@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.container{
+    display: flex;
+    padding: 20px;
+    align-content: center;
+    align-items: center;
+}
+
+.item{
+    width: 150px;
+    border: 1px solid #f00;
+    margin: 20px;
+}
+
+.item1{
+    height:120px;
+}
+
+.item2{
+    height: 100px;
+}
+
+.item3{
+    height: 40px;
+}
+
+.item4{
+    height: 200px;
+    border-color: #0f0;
+}
+
+
+@media (max-width: 640px) {
+    .container{
+        display: flex;
+        padding: 20px;
+        flex-wrap:wrap;
+        align-content: center;
+        align-items: center;
+    }
+    .item4{
+        order:-1;
+    }
+}

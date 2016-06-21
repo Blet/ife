@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>IFE JavaScript Task 14</title>
+</head>
+
+<body>
+
+	<h3>污染城市列表</h3>
+	<ul id="aqi-list">
+	<!--   
+		<li>第一名：福州（样例），10</li>
+	  	<li>第二名：福州（样例），10</li> -->
+	</ul>
+
+	<script type="text/javascript">
+	var aqiData = [
+		["北京", 90],
+		["上海", 50],
+		["福州", 10],
+		["广州", 50],
+		["成都", 90],
+		["西安", 100]
+	];
+
+	(function () {
+		/*
+		在注释下方编写代码
+		遍历读取aqiData中各个城市的数据
+		将空气质量指数大于60的城市显示到aqi-list的列表中
+		*/
+		function $(id){
+			return document.getElementById(id);
+		}
+
+		//选出大于60的城市
+		let data = aqiData.filter((item)=>item[1] > 60 )
+
+		//   console.log(data);
+		data.sort((item1,item2) => {
+			return  item2[1] - item1[1];
+		})
+		
+		let value = "";
+		
+		let numData = ["一","二","三"]
+		data.map((item,key)=>{
+			value += `<li> 第${numData[key]}名：${item}（样例），${item[1]}</li>`
+		})
+		
+		$("aqi-list").innerHTML = value
+
+	})();
+	
+	
+	/*
+	 * 1.filter 函数, 通过return 一个判断条件就能筛选出新的数组
+	 * 2.sort 排列数组，用来比较数组内的值，返回一个排序后的数组
+	 * 3.DOM操作，最好一起全部输入完后再用InnerHTML输入
+	 */
+	</script>
+</body>
+
+</html>

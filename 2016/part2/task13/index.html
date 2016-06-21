@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+</head>
+
+<body>
+
+    <label>请输入北京今天空气质量：
+        <input id="aqi-input" type="text">
+    </label>
+    <button id="button">确认填写</button>
+
+    <div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
+
+    <script type="text/javascript">
+        (function() {
+      /*
+      在注释下方写下代码
+      给按钮button绑定一个点击事件
+      在事件处理函数中
+      获取aqi-input输入的值，并显示在aqi-display中
+      */
+      function $(id){
+        return document.getElementById(id);
+      };
+
+      function hander(){
+          let num = parseInt($("aqi-input").value);
+          if( (!isNaN(num)) &&( num > 0 )  &&(num < 1000)) {
+
+              return  $("aqi-display").innerHTML = num;
+          }
+          alert( num + "输入有误");
+      }
+      $("button").onclick = function(){
+          hander();
+      };
+
+      $("aqi-input").onkeyup = function (event) {
+        if(event.keyCode === 13){
+            handler();
+	  }
+     }
+    })();
+
+    // /*
+    //  * 总结：
+    //  * 1.paerseInt 用来取整 ，错误在于我打错单词了
+    //  * 2.onclick 后面是加function 。
+    //  * 3.键盘的事件是 onkeyup
+    //  * /
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!--
+    题目是输入字符串。并且算出相同字符串的数目
+
+
+ -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    function aaa(str) {
+        let length = str.length;
+        let arr = [],
+            value = str[0],
+            string = "";
+            count = 1;
+        for (let i = 1; i < length; i++) {
+            if (value == str[i]) {
+                count++;
+            } else {
+                arr.push(value);
+                arr.push(count);
+                value = str[i];
+                count = 1;
+            }
+        }
+
+        if (arr.length > length) {
+            return str;
+        }
+        return arr.join('');
+    }
+
+    console.log(aaa('abbbbbccccdddcccccc'));
+
+    </script>
+</body>
+
+</html>
