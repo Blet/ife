@@ -1,0 +1,29 @@
+table{
+
+}
+
+thead{
+    background-color: #000;
+    color:#fff;
+}
+
+tr:nth-child(even) td{
+    background-color: #999;
+}
+
+tr:nth-child(-n+3) td{
+    color: #e46b6e;
+}
+
+input{
+    width: 100px;
+    border: 2px solid #ddd;
+    margin: 20px;
+    transition: border-color,width .5s;
+}
+
+input:focus{
+    width: 200px;
+    border-color:cornflowerblue;
+}
+

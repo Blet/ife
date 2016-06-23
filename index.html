@@ -3,8 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .link{
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        table {
+            overflow: auto;
+            /* word-break: normal; */
+            word-break: keep-all;
+            margin: 0 auto;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            border-spacing: 0;
+            border-collapse: collapse;
+
+
+        }
+
+        table td {
+            padding: 6px 13px;
+            border: 1px solid #ddd;
+        }
+        table tr{
+            background-color: #fff;
+            border-top: 1px solid #ccc;
+            display: table-row;
+            vertical-align: inherit;
+            border-color: inherit;
+        }
+        table tr:nth-child(2n){
+            background-color: #f8f8f8;
+        }
+        table th,table td{
+            padding: 6px 20px;
+            border: 1px solid #ddd;
+        }
+    </style>
 </head>
 <body>
-  这是ife练习的目录
+    <h1>百度训练营练习2016</h1>
+    <div class="link">
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>题目</th>
+                    <th>难度</th>
+                    <th>代码地址</th>
+                    <th>代码演示</th>
+                </tr>
+            </thead>
+            <tbody id="body">
+
+            </tbody>
+        </table>
+    </div>
+    <script src="task.js"></script>
+    <script>
+        let body = document.getElementById("body");
+        let length = 18  ;
+        let str = "";
+        taskJson.map((item,index) => {
+            let arr = Object.keys(item);
+            str += `
+                    <tr>
+                        <td>${arr[0]}</td>
+                        <td><a href=${item[arr[2]]}>${item[arr[0]]}</a></td>
+                        <td>${item[arr[1]]}</td>
+                        <td><a href="">代码地址</a></td>
+                        <td><a href="">代码演示</a></td>
+                    </tr>`
+        })
+
+        body.innerHTML = str;
+    </script>
 </body>
 </html>
