@@ -8,6 +8,9 @@
             box-sizing: border-box;
             text-align: center;
         }
+        a{
+            text-decoration: none;
+        }
         .link{
             width: 80%;
             margin: 0 auto;
@@ -73,6 +76,7 @@
         let str = "";
         taskJson.map((item,index) => {
             let arr = Object.keys(item);
+            let status = item.status ? "完成":"未完成";
             str += `
                     <tr>
                         <td>${arr[0]}</td>
@@ -80,10 +84,21 @@
                         <td>${item[arr[1]]}</td>
                         <td><a href="https://github.com/Blet/ife/tree/gh-pages/2016/task${index+1}">代码地址</a></td>
                         <td><a href="http://blet.github.io/ife/2016/task${index+1}">代码演示</a></td>
+                        <td>${status}</td>
                     </tr>`
         })
 
         body.innerHTML = str;
+        let ARR = "";
+        taskJson.map((item,index) => {
+            let arr = Object.keys(item);
+        let status = item.status ? "完成":"未完成";
+        ARR += `| ${index+1} | [${arr[0]}](${item[arr[2]]}) | [${item[arr[1]]}]| [代码地址](https://github.com/Blet/ife/tree/gh-pages/2016/task${index+1}) | [演示地址](http://blet.github.io/ife/2016/task${index+1}) |${status}|\n`
+        });
+
+        console.log(ARR);
+
     </script>
+    <script scr="aa.js"></script>
 </body>
 </html>
