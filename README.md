@@ -1,6 +1,6 @@
 
 | # | Title | 难度 | 代码地址 | 演示地址 | 完成 |
-|:---:|:---:|:---:|:---:|:---:|
+|:---:|:---:|:---:|:---:|:---:|:---:|
 | 1 | [零基础HTML编码](http://ife.baidu.com/task/detail?taskId=1) | [简单]| [代码地址](https://github.com/Blet/ife/tree/gh-pages/2016/task1) | [演示地址](http://blet.github.io/ife/2016/task1) |未完成|
 | 2 | [零基础HTML及CSS编码（一）](http://ife.baidu.com/task/detail?taskId=2) | [简单]| [代码地址](https://github.com/Blet/ife/tree/gh-pages/2016/task2) | [演示地址](http://blet.github.io/ife/2016/task2) |未完成|
 | 3 | [三栏式布局](http://ife.baidu.com/task/detail?taskId=3) | [简单]| [代码地址](https://github.com/Blet/ife/tree/gh-pages/2016/task3) | [演示地址](http://blet.github.io/ife/2016/task3) |完成|
