@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    span {
+        margin: 10px;
+        font-size: 21px;
+        padding: 10px;
+        text-align: center;
+        background: red;
+        display: inline-block;
+    }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="inp" name="">
+    <button id="left-in">左侧入</button>
+    <button id="right-in">右侧入</button>
+    <button id="left-out">左侧出</button>
+    <button id="right-out">右侧出</button>
+    <br>
+    <div id="list"></div>
+    <!-- 不能有空格，不然第一个Child 是空白 -->
+    <script type="text/javascript">
+    function $(id) {
+        return document.querySelector(id);
+    }
+
+    let list = $('#list').getElementsByTagName('span');
+
+    function checkNum(value) {
+        var numTest = /^\d+$/;
+        if (numTest.test(value)) return true;
+        alert("请输入数字");
+        $('#inp').value = '';
+        return false;
+    }
+
+    function createSpan(num) {
+        var newSpan = document.createElement('span');
+        newSpan.innerText = num;
+        return newSpan;
+    }
+
+    $('#left-in').onclick = function() {
+        let num = $('#inp').value;
+        if (!checkNum(num)) return;
+        let newSpan = createSpan(num);
+        if (list) {
+            $('#list').insertBefore(newSpan, list[0]);
+        } else {
+            $("#list").appendChild(newSpan[0])
+        }
+    }
+
+    $('#right-in').onclick = function() {
+        let num = $('#inp').value;
+        if (!checkNum(num)) return;
+        let newSpan = createSpan(num);
+        $('#list').appendChild(newSpan);
+    }
+
+    function remove(node, child) {
+        node.onclick = function() {
+            if (list[0]) {
+                $('#list').removeChild(($('#list')[child]));
+            } else {
+                alert('没有指可以删除');
+            }
+        }
+    }
+    remove($('#right-out'),"firstChild");
+    remove($('#left-out'),"lastChild");
+
+
+    $('#list').onclick = function(e) {
+        if (e.target && e.target.nodeName === "SPAN") {
+            $('#list').removeChild(e.target);
+            $('#inp').value = "";
+        }
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #2289bf;
+}
+
+.container {
+    width: 1280px;
+    height: 56px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container img {
+    line-height: 56px;
+    padding-top: 10px;
+    padding-left: 50px;
+}
+
+.header-block {
+    float: right;
+    padding-right: 94px;
+}
+
+.search {
+    display: inline-block;
+    overflow: hidden;
+    height: 28px;
+    margin-top: 14px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-radius: 25px;
+    background-color: #fff;
+    background-image: url('../images/search.png');
+    background-repeat: no-repeat;
+    background-position: 10px 6px;
+}
+
+.search input {
+    width: 109px;
+    height: 28px;
+    border: none;
+    outline: none;
+}
+
+.search input:focus {
+    width: 269px;
+}
+
+.login {
+    font-size: 12px;
+    line-height: 56px;
+    display: inline-block;
+    vertical-align: top;
+    color: #fff;
+}
+
+.login img {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+main {
+    width: 100%;
+    min-width: 1280px;
+    margin-top: 56px;
+}
+
+main * {
+    box-sizing: border-box;
+}
+
+main:before,
+main:after {
+    display: table;
+    clear: both;
+    zoom: 1;
+    content: '';
+}
+
+.silerbar {
+    float: left;
+    width: 16.66666%;
+    padding: 2%;
+    color: #fff;
+    background-color: #2a2e3d;
+}
+
+.main {
+    float: left;
+    width: 83.3333331%;
+    background-color: #eeeeed;
+}
+
+.user {
+    font-size: 0;
+    height: 58px;
+    margin-bottom: 16px;
+}
+
+.user-logo {
+    display: inline-block;
+    width: 58px;
+    height: 58px;
+    padding: 3px;
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid #fff;
+    border-radius: 29px;
+}
+
+.user-logo img {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    background: #fff;
+}
+
+.user span {
+    font-family: '黑体';
+    font-size: 12px;
+    line-height: 58px;
+    padding-left: 17px;
+}
+
+.fans {
+    font-size: 12px;
+    color: #6e8095;
+}
+
+.fans * {
+    display: inline-block;
+}
