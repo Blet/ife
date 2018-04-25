@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>task1</title>
+    <style>
+        .container {
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        .item {
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            font-size: 20px;
+
+            margin: 0 auto 50px;
+            position: relative;
+            transition-duration: 2s;
+            transition-property: color;
+            transition-timing-function: ease;
+        }
+
+        .line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            background: #4568e8;
+            width: 1px;
+            height: 2px;
+            transition-property: transform;
+            transition-duration: 1s;
+            transition-timing-function: ease;
+            transform: scaleX(0);
+        }
+
+        .animate {
+            color: #4568e8;
+        }
+
+        .animate .line {
+            transform: scaleX(100);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item" id="item">
+            前端学院
+            <div class="line"></div>
+        </div>
+
+        <button id="button">切换样式</button>
+    </div>
+    <script>
+        let button = document.getElementById("button");
+        let item = document.getElementById("item");
+        let add = false;
+        button.addEventListener("click", function (e) {
+            if (!add) {
+                item.classList.add("animate")
+                add = true;
+            } else {
+                item.classList.remove("animate")
+                add = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
