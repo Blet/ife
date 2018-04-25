@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Created by .ignore support plugin (hsz.mobi)
+.DS_Store
 .idea
-=======
-.idea
-ife2016
 *.psd
->>>>>>> gh-pages
+
