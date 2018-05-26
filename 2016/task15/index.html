@@ -1,23 +1,39 @@
 <!DOCTYPE>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>IFE JavaScript Task 01</title>
-  </head>
+
+<head>
+  <meta charset="utf-8">
+  <title>IFE JavaScript Task 01</title>
+</head>
+
 <body>
 
   <ul id="source">
-    <li>北京空气质量：<b>90</b></li>
-    <li>上海空气质量：<b>70</b></li>
-    <li>天津空气质量：<b>80</b></li>
-    <li>广州空气质量：<b>50</b></li>
-    <li>深圳空气质量：<b>40</b></li>
-    <li>福州空气质量：<b>32</b></li>
-    <li>成都空气质量：<b>90</b></li>
+    <li>北京空气质量：
+      <b>90</b>
+    </li>
+    <li>上海空气质量：
+      <b>70</b>
+    </li>
+    <li>天津空气质量：
+      <b>80</b>
+    </li>
+    <li>广州空气质量：
+      <b>50</b>
+    </li>
+    <li>深圳空气质量：
+      <b>40</b>
+    </li>
+    <li>福州空气质量：
+      <b>32</b>
+    </li>
+    <li>成都空气质量：
+      <b>90</b>
+    </li>
   </ul>
 
   <ul id="resort">
-    <!--
+    <!-- 
     <li>第一名：北京空气质量：<b>90</b></li>
     <li>第二名：北京空气质量：<b>90</b></li>
     <li>第三名：北京空气质量：<b>90</b></li>
@@ -27,103 +43,90 @@
 
   <button id="sort-btn">排序</button>
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
-/**
- * getData方法
- * 读取id为source的列表，获取其中城市名字及城市对应的空气质量
- * 返回一个数组，格式见函数中示例
- */
-function getData() {
-  /*
-  coding here
-  */
-  var data = [];
-  var oUl = document.getElementById("source");
-  // var oLi = oUl.getElementsByTagName("li");
-  var oLi  = oUl.children;
-  for ( let i =0 ; i < oLi.length; i ++ ){
-    let li = oLi[i];
-    let arrLi = [];
-    let city = li.innerHTML.toString().slice(0,2);
-    let oB = li.children;
-    let num = oB[0].innerText;
-    // console.log(oB);
-    // console.log(oB[0].innerText);
-    // arrLi.push(city);
-    arrLi.push(num , city);
-    // console.log(arrLi);
-    data.push(arrLi);
-  }
-  /*
-  data = [
-    ["北京", 90],
-    ["北京", 90]
-    ……
-  ]
-  */
-  // console.log(data.toString());
-  return data;
-}
-getData();
-// /**
-//  * sortAqiData
-//  * 按空气质量对data进行从小到大的排序
-//  * 返回一个排序后的数组
-//  */
-function sortAqiData(data) {
-  data.sort((item1,item2) => item1[0] - item2[0])
-  // console.log(data)
-  return data;
-}
-// sortAqiData(getData())
-/**
- * render
- * 将排好序的城市及空气质量指数，输出显示到id位resort的列表中
- * 格式见ul中的注释的部分
- */
-function render(data) {
-  let resort = document.getElementById("resort");
-  let numData = ["一","二","三","四","五","六","七"];
-  data = data.reverse();
-  let value = "";
-    data.map((item,key)=>{
-      value += `<li> 第${numData[key]}名，${item[1]}空气质量：${item[0]}</li>`
+    let $ = function (id) {
+      return document.querySelector("#" + id)
+    }
+    /**
+     * getData方法
+     * 读取id为source的列表，获取其中城市名字及城市对应的空气质量
+     * 返回一个数组，格式见函数中示例
+     */
+    function getData() {
+      /*
+      coding here
+      */
 
-    });
-    resort.innerHTML = value;
-}
+      /*
+      data = [
+        ["北京", 90],
+        ["北京", 90]
+        ……
+      ]
+      */
+      let liList = $("source").getElementsByTagName('li');
+      let data = [];
+      for (let i = 0; i < liList.length; i++) {
+        let item = liList[i];
+        if (item.tagName === "LI") {
+          let city = item.textContent.substring(0, 2);
+          let quality = parseInt(item.getElementsByTagName("b")[0].innerText);
+          data.push([city, quality])
+        }
+      }
+      return data;
 
-function btnHandle() {
-  let aqiData = getData();
-  aqiData = sortAqiData(aqiData);
-  render(aqiData);
-}
+    }
 
 
-function init() {
+    /**
+     * sortAqiData
+     * 按空气质量对data进行从小到大的排序
+     * 返回一个排序后的数组
+     */
+    function sortAqiData(data) {
+      return data.sort((a, b) => {
+        return a[1] < b[1];
+      })
+    }
 
-  // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
-  var sortBtn  = document.getElementById("sort-btn");
-  sortBtn.onclick = function(e){
-    // alert(111);
-    e.preventDefault();
-    btnHandle();
-  }
+    /**
+     * render
+     * 将排好序的城市及空气质量指数，输出显示到id位resort的列表中
+     * 格式见ul中的注释的部分
+     */
+    function render(data) {
+      let numData = ["一", "二", "三", "四", "五", "六", "七"];
+      function templete(num, city, quality) {
+        return ` <li>第${num}名：${city}空气质量：<b>${quality}</b></li>`
+      }
+      let string = '';
+      for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        string += templete(numData[i], item[0], item[1]);
+      }
+      $("resort").innerHTML = string;
+    }
 
-}
 
-init();
+    function btnHandle() {
+      var aqiData = getData();
+      aqiData = sortAqiData(aqiData);
+      render(aqiData);
+    }
 
-/*
- *总结
- *1. 用TagName的时候，是数组，所以要加上下标
- *2. 确定节点的时候，可以使用children来减少我们dom与js的操作，提高性能
- */
 
-</script>
+    function init() {
+      // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
+      $("sort-btn").addEventListener("click", (e) => {
+        btnHandle();
+      })
+    }
+
+    init();
+
+  </script>
 </body>
+
 </html>
-
-
-

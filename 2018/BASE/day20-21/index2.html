@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+        select {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <label>
+        <input id="school" name="status" type="radio"> School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio"> Company
+    </label>
+
+    <select id="school-select">
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">
+        <option>百度</option>
+        <option>爱奇艺</option>
+    </select>
+
+    <script>
+        // 基于如上 HTML，实现以下功能：
+
+        // 当用户选择了 School 的单选框时，显示 School 的下拉选项，隐藏 Company 的下拉选项
+        // 当用户选择了 School 的单选框时，显示 Company 的下拉选项，隐藏 School 的下拉选项
+
+        function $(id) {
+            return document.getElementById(id)
+        }
+
+        let school = $('school-select');
+        let company = $('company-select');
+
+        $('school').onchange = function (e) {
+            let value = e.target.value;
+            if (value == 'on') {
+                school.className = "show"
+                company.className = "";
+            }
+        }
+        $('company').onchange = function (e) {
+            console.log(e.target.value);
+            let value = e.target.value;
+            if (value == 'on') {
+                company.className = "show"
+                school.className = "";
+            }
+        }
+    </script>
+</body>
+
+</html>

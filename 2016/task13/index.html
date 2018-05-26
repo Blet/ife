@@ -13,38 +13,40 @@
     </label>
     <button id="button">确认填写</button>
 
-    <div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
+    <div>您输入的值是：
+        <span id="aqi-display">尚无录入</span>
+    </div>
 
     <script type="text/javascript">
-        (function() {
-      /*
-      在注释下方写下代码
-      给按钮button绑定一个点击事件
-      在事件处理函数中
-      获取aqi-input输入的值，并显示在aqi-display中
-      */
-      function $(id){
-        return document.getElementById(id);
-      };
+        (function () {
+            /*
+            在注释下方写下代码
+            给按钮button绑定一个点击事件
+            在事件处理函数中
+            获取aqi-input输入的值，并显示在aqi-display中
+            */
+            function $(id) {
+                return document.getElementById(id);
+            };
 
-      function hander(){
-          let num = parseInt($("aqi-input").value);
-          if( (!isNaN(num)) &&( num > 0 )  &&(num < 1000)) {
+            function handler() {
+                let num = parseInt($("aqi-input").value);
+                if ((!isNaN(num)) && (num > 0) && (num < 1000)) {
 
-              return  $("aqi-display").innerHTML = num;
-          }
-          alert( num + "输入有误");
-      }
-      $("button").onclick = function(){
-          hander();
-      };
+                    return $("aqi-display").innerHTML = num;
+                }
+                alert(num + "输入有误");
+            }
+            $("button").onclick = function () {
+                handler();
+            };
 
-      $("aqi-input").onkeyup = function (event) {
-        if(event.keyCode === 13){
-            handler();
-	  }
-     }
-    })();
+            $("aqi-input").onkeyup = function (event) {
+                if (event.keyCode === 13) {
+                    handler();
+                }
+            }
+        })();
 
     // /*
     //  * 总结：

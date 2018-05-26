@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <label>Number A:
+            <input id="radio-a" type="radio" name="math-obj" value="a">
+        </label>
+        <input id="num-a" type="text">
+        <label>Number B:
+            <input id="radio-b" type="radio" name="math-obj" value="b">
+        </label>
+        <input id="num-b" type="text">
+    </div>
+    <div>
+        <button>判断当前选中的输入框输入内容是否为数字</button>
+        <button>把 A 四舍五入为 B 个小数位数的数字</button>
+        <button>当前选中数字的绝对值</button>
+        <button>对当前选中的数字进行上舍入</button>
+        <button>对当前选中的数字进行下舍入</button>
+        <button>把当前选中的数字四舍五入为最接近的整数</button>
+        <button>返回 A 和 B 中的最高值</button>
+        <button>返回 A 和 B 中的最低值</button>
+    </div>
+    <p id="result"></p>
+    <script>
+        // 基于如上HTML，实现需求
+
+        // 按照HTML中按钮的描述以此实现功能
+        // 计算结果显示在 id 为 result 的 P 标签中
+        // 除了第一个按钮，其它按钮操作时，都需要判断输入是否为数字，否则在 console 中输出错误信息
+
+        function $(id) {
+            return document.getElementById(id)
+        }
+        let btnList = document.getElementsByTagName('button');
+        let
+            // 判断当前选中的输入框输入内容是否为数字
+            btnList[0].onclick = function () {
+
+            }
+
+
+    </script>
+</body>
+
+</html>
