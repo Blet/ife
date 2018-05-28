@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
+    <script src="../../../utils/html.js"></script>
+    <script>
+        // 邮箱后缀List参考
+        var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+        let $input = $("email-input");
+        let $ul = $('email-sug-wrapper');
+        let index = 0;
+
+        const UP = 38;
+        const DOWN = 40;
+
+        $input.onkeyup = function (e) {
+            // 获取用户输入，生成提示框中的提示内容，将提示内容添加到email-sug-wrapper中
+            let value = userInput(e.target.value);
+            let list = createTipContent(value);
+            let last = list.length - 1;
+            if (e.keyCode == DOWN) {
+                index++
+                if (index == list.length) {
+                    index = 0;
+                }
+            } else if (e.keyCode == UP) {
+                index--
+                if (index < 0) {
+                    index = last;
+                }
+            } else if (e.keyCode == 13) {
+                let value = list[index];
+                $input.value = value;
+                closeWrapper();
+                return;
+            } else {
+                index = 0
+            }
+
+
+            setEmailWrapper(list);
+            displayEmailWrapper(value);
+        }
+
+        function userInput() {
+            let value = $input.value;
+            value = HtmlUtil.htmlEncode(value);
+            return tirm(value);
+        }
+
+        function tirm(str) {
+            if (typeof str === "string") {
+                return (str + "").replace(' ', '');
+            }
+            return ""
+        }
+
+        function createTipContent(value) {
+            let list = [];
+            let starValue = value;
+            let endValue;
+            if (value.indexOf("@") > -1) {
+                endValue = value.substring(value.indexOf("@") + 1, value.length);
+            }
+            for (let i = 0; i < postfixList.length; i++) {
+                if (endValue != undefined) {
+                    if (postfixList[i].indexOf(endValue) > -1) {
+                        starValue = value.substring(0, value.indexOf("@"));
+                        list.push(starValue + "@" + postfixList[i]);
+                    } else {
+                        list.push(starValue + "@" + postfixList[i]);
+                    }
+                } else {
+                    list.push(starValue + "@" + postfixList[i]);
+                }
+
+            }
+            return list;
+        }
+
+        function setEmailWrapper(list) {
+            let ul = $('email-sug-wrapper');
+            let innerHTML = "";
+            for (let i = 0; i < list.length; i++) {
+                innerHTML += "<li>" + list[i] + "</li>";
+            }
+            ul.innerHTML = innerHTML;
+        }
+
+
+        function displayEmailWrapper(value) {
+            if (value === "") {
+                closeWrapper();
+            } else {
+                openWrapper();
+            }
+        }
+
+        function closeWrapper() {
+            $ul.style.display = "none";
+        }
+
+        function openWrapper() {
+            $ul.style.display = "block";
+            changeLiBackgroundColoe(index);
+        }
+
+        function changeLiBackgroundColoe(i) {
+            $ul.children[i].style.backgroundColor = 'blue';
+        }
+    </script>
+</body>
+
+</html>
