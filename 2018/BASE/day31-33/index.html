@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <select name="region" id="region-select">
+            <option value="0">华东</option>
+            <option value="1">华南</option>
+            <option value="2">华北</option>
+        </select>
+        <select name="product" id="product-select">
+            <option value="0">手机</option>
+            <option value="1">笔记本</option>
+            <option value="2">智能音箱</option>
+        </select>
+    </div>
+    <table border="1" id="table">
+    </table>
+    <script src="./data.js"></script>
+    <script>
+        let $regionSelect = document.getElementById('region-select')
+        let $productSelect = document.getElementById('product-select')
+        let table = document.getElementById('table');
+        $regionSelect.onchange = function (e) {
+            renderTable()
+        }
+
+        $productSelect.onchange = function (e) {
+            renderTable();
+        }
+
+        function createData(value) {
+            let regionsValue = $regionSelect.value;
+            let productValue = $productSelect.value;
+            let regionMap = ["华东", "华南", "华北"];
+            let productMap = ["手机", "笔记本", "智能音箱"];
+
+            let list = [];
+            for (let i = 0; i < sourceData.length; i++) {
+                let item = sourceData[i];
+                if (item.region == regionMap[regionsValue] && item.product == productMap[productValue]) {
+                    list.push(item);
+                }
+            }
+            return list;
+        }
+
+        function renderTable() {
+            let list = createData()
+            let header = ` 
+                <tr>
+                    <th>商品</th>
+                    <th>地区</th>
+                    <th>1月</th>
+                    <th>2月</th>
+                    <th>3月</th>
+                    <th>4月</th>
+                    <th>5月</th>
+                    <th>6月</th>
+                    <th>7月</th>
+                    <th>8月</th>
+                    <th>9月</th>
+                    <th>10月</th>
+                    <th>11月</th>
+                    <th>12月</th>
+                </tr>`
+            let innerhtml = "";
+            for (let i = 0; i < list.length; i++) {
+                let item = list[i];
+                innerhtml += `<td>${item.product}</td>`
+                innerhtml += `<td>${item.region}</td>`
+                for (let j = 0; j < item.sale.length; j++) {
+                    innerhtml += `<td>${item.sale[j]}</td>`
+                }
+                innerhtml += `<tr>${innerhtml}</tr>`
+            }
+
+            console.log(innerhtml);
+            table.innerHTML = header + innerhtml
+
+        }
+    </script>
+</body>
+
+</html>

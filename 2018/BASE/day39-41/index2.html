@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="a">A</button>
+    <button id="b">B</button>
+    <button id="c">C</button>
+
+    <button id="d">D</button>
+    <button id="e">E</button>
+    <button id="f">F</button>
+
+
+    <div id="contABC"></div>
+    <div id="contDEF"></div>
+
+    <script>
+        function $(id) {
+            return document.getElementById(id)
+        }
+
+        let $a = $('a');
+        let $b = $('b');
+        let $c = $('c');
+        let $d = $('d');
+        let $e = $('e');
+        let $f = $('f');
+
+
+        function stringfiyHash() {
+            return window.location.hash.replace("#abc=", "");
+        }
+
+        function render() {
+            let value = stringfiyHash();
+            $('contABC').innerHTML = value
+        }
+
+        [$a, $b, $c].map(item => {
+            item.onclick = function (e) {
+                window.location.hash = e.target.innerHTML
+            }
+        })
+
+        window.onhashchange = function (e) {
+            render();
+        }
+
+        render()
+
+    </script>
+</body>
+
+</html>

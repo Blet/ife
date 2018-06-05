@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Restaurant(cash, seats, staff) {
+            this.cash = cash;
+            this.seats = seats;
+            this.staff = staff || [];
+        }
+        Restaurant.prototype.hide = function (preson) {
+            this.staff.push(person);
+        }
+        Restaurant.prototype.fire = function (person) {
+            this.staff.filter(item => { return item === person })
+        }
+
+
+        function Employee(id, name, salary) {
+            this.id = id;
+            this.name = name;
+            this.salary = salary
+        }
+
+        Employee.prototype.finishOnceWork = function () {
+            console.log("完成一次工作")
+        }
+
+        function Waiter() {
+
+        }
+
+        function Cooker() {
+
+        }
+
+        // test
+
+        var ifeRestaurant = new Restaurant({
+            cash: 1000000,
+            seats: 20,
+            staff: []
+        });
+
+        var newCook = new Cook("Tony", 10000);
+        ifeRestaurant.hire(newCook);
+
+        console.log(ifeRestaurant.staff);
+
+        ifeRestaurant.fire(newCook);
+        console.log(ifeRestaurant.staff);
+
+    </script>
+</body>
+
+</html>
