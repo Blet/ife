@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Restaurant {
+            constructor(obj) {
+                this.cash = obj.cash;
+                this.seats = obj.seats;
+                this.staff = obj.staff
+            }
+            hire(person) {
+                this.staff.push(person);
+            }
+            fire(person) {
+                this.staff = this.staff.filter(item => {
+                    return item.id != person.id;
+                })
+            }
+        }
+
+        class Employee {
+            constructor(id, name, salary) {
+                this.id = id;
+                this.name = name;
+                this.salary = salary;
+            }
+
+            finishOnceWork(str) {
+                console.log("完成一次工作：" + str)
+            }
+        }
+
+        class Watier extends Employee {
+            constructor(id, name, salary) {
+                super(id, name, salary);
+            }
+            work(data) {
+                if (typeof data === 'Array') {
+                    console.log('客人吃什么菜')
+                } else {
+                    console.log('上菜')
+                }
+                super.finishOnceWork();
+            }
+        }
+
+        class Cook extends Employee {
+            constructor(id, name, salary) {
+                super(id, name, salary)
+            }
+
+            work(data) {
+                super.finishOnceWork(console.log('烹饪出菜品'));
+            }
+        }
+
+        class Client {
+            order() {
+                console.log("点菜");
+            }
+
+            eat() {
+                console.log("吃");
+            }
+        }
+
+        class Food {
+            constructor(name, count, price) {
+                this.name = name;
+                this.count = count;
+                this.price = price
+            }
+        }
+
+        // test
+
+        var ifeRestaurant = new Restaurant({
+            cash: 1000000,
+            seats: 20,
+            staff: []
+        });
+
+        var newCook = new Cook("Tony", 10000);
+        newCook.work();
+        ifeRestaurant.hire(newCook);
+
+        console.log(ifeRestaurant.staff);
+
+        ifeRestaurant.fire(newCook);
+        console.log(ifeRestaurant.staff);
+
+    </script>
+</body>
+
+</html>
