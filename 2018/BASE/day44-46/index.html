@@ -33,7 +33,7 @@
                 this.salary = salary;
             }
 
-            finishOnceWork(str) {
+            work(str) {
                 console.log("完成一次工作：" + str)
             }
         }
@@ -48,7 +48,7 @@
                 } else {
                     console.log('上菜')
                 }
-                super.finishOnceWork();
+                super.work();
             }
         }
 
@@ -58,7 +58,7 @@
             }
 
             work(data) {
-                super.finishOnceWork(console.log('烹饪出菜品'));
+                super.work(console.log('烹饪出菜品'));
             }
         }
 

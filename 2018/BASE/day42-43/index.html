@@ -10,39 +10,69 @@
 
 <body>
     <script>
-        function Restaurant(cash, seats, staff) {
-            this.cash = cash;
-            this.seats = seats;
-            this.staff = staff || [];
-        }
-        Restaurant.prototype.hide = function (preson) {
-            this.staff.push(person);
-        }
-        Restaurant.prototype.fire = function (person) {
-            this.staff.filter(item => { return item === person })
-        }
+        let Restaurant = function () {
+            function Restaurant(obj) {
+                this.cash = obj.cash;
+                this.seats = obj.seats;
+                this.staff = obj.staff
+            }
+            Restaurant.prototype.hire = function (person) {
+                this.staff.push(person);
+            }
+            Restaurant.prototype.fire = function (person) {
+                this.staff = this.staff.filter(item => { return item !== person })
+            }
+            return Restaurant;
+        }()
 
 
-        function Employee(id, name, salary) {
-            this.id = id;
-            this.name = name;
-            this.salary = salary
-        }
+        let Employee = function () {
+            function Employee(id, name, salary) {
+                this.id = id;
+                this.name = name;
+                this.salary = salary
+            }
 
-        Employee.prototype.finishOnceWork = function () {
-            console.log("完成一次工作")
-        }
+            Employee.prototype.finishOnceWork = function () {
+                console.log("完成一次工作")
+            }
+            return Employee
+        }()
 
-        function Waiter() {
+        let Waiter = function () {
+            function Waiter(id, name, salary) {
+                Employee.call(this, id, name, salary);
+            }
 
-        }
+            Waiter.prototype = Object.create(Employee.prototype, {
+                constructor: {}
+            });
+            Waiter.prototype.constructor = Waiter;
+            Waiter.prototype.work = function () {
+                if (arguments.length > 0) {
+                    console.log("点菜");
+                } else {
+                    console.log("上菜")
+                }
+            }
+            return Waiter
+        }()
 
-        function Cooker() {
+        let Cook = function () {
+            function Cooker(id, name, salary) {
+                Employee.call(this, id, name, salary);
+            }
 
-        }
+            Cooker.prototype = Object.create(Employee.prototype);
+            Cooker.prototype.constructor = Cooker;
+            Cooker.prototype.work = function () {
+                console.log('烹饪');
+            }
+            return Cooker
+        }()
+
 
         // test
-
         var ifeRestaurant = new Restaurant({
             cash: 1000000,
             seats: 20,
@@ -51,7 +81,6 @@
 
         var newCook = new Cook("Tony", 10000);
         ifeRestaurant.hire(newCook);
-
         console.log(ifeRestaurant.staff);
 
         ifeRestaurant.fire(newCook);
