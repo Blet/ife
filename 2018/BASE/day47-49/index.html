@@ -99,10 +99,11 @@
         }
 
         class Food {
-            constructor(name, count, price) {
+            constructor(name, count, price, time) {
                 this.name = name;
                 this.count = count;
-                this.price = price
+                this.price = price;
+                this.time = time;
             }
         }
 
@@ -120,11 +121,11 @@
 
         let customList = [new Customer(), new Customer(), new Customer(), new Customer()];
         let menuList = [
-            new Food('白切鸡', 10, 1),
-            new Food('白切鸡2', 10, 1),
-            new Food('白切鸡3', 10, 1),
-            new Food('白切鸡4', 10, 1),
-            new Food('白切鸡5', 10, 1),
+            new Food('白切鸡', 10, 1, 1),
+            new Food('白切鸡2', 10, 1, 2),
+            new Food('白切鸡3', 10, 1, 3),
+            new Food('白切鸡4', 10, 1, 4),
+            new Food('白切鸡5', 10, 1, 5),
         ]
 
         // 顾客入座
