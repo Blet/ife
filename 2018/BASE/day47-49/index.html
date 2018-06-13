@@ -90,7 +90,12 @@
 
             order(menu) {
                 console.log("点菜");
-                return menu[Math.floor(Math.random() * 5)];
+                let count = parseInt(Math.random() * 10);
+                let list = [];
+                for (let i = 0; i < count; i++) {
+                    list.push(menu[Math.floor(Math.random() * 5)])
+                }
+                return list;
             }
 
             eat() {
@@ -128,16 +133,32 @@
             new Food('白切鸡5', 10, 1, 5),
         ]
 
-        // 顾客入座
-        for (let i = 0; i < customList.length; i++) {
-            console.log('顾客入座');
-            let food = customList[i].order(menuList);
-            console.log('顾客点了: ' + food.name);
-            waiter.order(food);
-
-        }
-        // 点的菜 = 顾客点菜
-
+        // 顾客入座`
+        let i = 0;
+        customList[i]
+            .order(menuList)
+            .then(food => {
+                return watiet.order(food);
+            })
+            .then(foods => {
+                return cook.cooking(food);
+            })
+            .then(food => {
+                return watier.work()
+            })
+            .then(food => {
+                return customList[i].eat();
+            })
+            .then(food => {
+                return customList[i].pay();
+            }).then(() => {
+                if (i > 5) {
+                    console.log("接客完毕")
+                } else {
+                    i++
+                    customList[i].order(menu);
+                }
+            })
 
     </script>
 </body>

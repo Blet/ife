@@ -19,8 +19,8 @@
 
             getInstance() {
                 //利用私有变量instance实现单例模式
-                if (this.instance === null) {
-                    this.instance = new Restaurant(args);
+                if (!this.instance) {
+                    this.instance = new Restaurant(arguments);
                 }
                 return this.instance;
             }
@@ -47,14 +47,15 @@
             }
         }
 
-        class Watier extends Employee {
+        class Waiter extends Employee {
             constructor(name, salary) {
                 super(name, salary);
             }
-            getInstance() {
+            static getInstance() {
                 //利用私有变量instance实现单例模式
-                if (this.instance === null) {
-                    this.instance = new Restaurant(args);
+                if (!this.instance) {
+
+                    this.instance = new Waiter(arguments);
                 }
                 return this.instance;
             }
@@ -73,28 +74,33 @@
                 super(name, salary)
             }
 
-            getInstance() {
+            static getInstance() {
                 //利用私有变量instance实现单例模式
-                if (this.instance === null) {
-                    this.instance = new Restaurant(args);
+                if (!this.instance) {
+                    this.instance = new Cook(arguments);
                 }
                 return this.instance;
             }
 
             work(data) {
-                super.work(console.log('烹饪出菜品'));
+                console.log("厨师炒菜：" + data)
             }
         }
 
         class Customer {
 
             order(menu) {
-                console.log("点菜");
-                return menu[Math.floor(Math.random() * 5)];
+                let food = menu[Math.floor(Math.random() * 5)];
+                console.log("顾客点了：" + food.name);
+                return food
             }
 
             eat() {
                 console.log("吃");
+            }
+
+            leave() {
+                console.log("走人")
             }
         }
 
@@ -131,13 +137,13 @@
         for (let i = 0; i < customList.length; i++) {
             console.log('顾客入座');
             let food = customList[i].order(menuList);
-            console.log('顾客点了: ' + food.name);
-            waiter.order(food);
-
+            waiter.work(food.name);
+            cook.work(food.name)
+            waiter.work();
+            customList[i].eat();
+            customList[i].leave()
+            console.log("-------下一个啦---------------")
         }
-        // 点的菜 = 顾客点菜
-
-
     </script>
 </body>
 
